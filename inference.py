@@ -43,6 +43,7 @@ if submitted:
         audio_base64 = data['audio']['binary']
         dtype = data['audio']['dtype']
         shape = data['audio']['shape']
+        rate = data['audio']['rate']
 
         audio_bytes = base64.b64decode(audio_base64)
         audio_array = np.frombuffer(audio_bytes, dtype=dtype)
@@ -51,10 +52,10 @@ if submitted:
         # Write the audio data to an in-memory bytes buffer
         audio_buffer = io.BytesIO()
         # Assuming a sample rate of 16000
-        sf.write(audio_buffer, audio_array, 16000, format='wav')
+        sf.write(audio_buffer, audio_array, rate, format='wav')
 
         # Reset buffer cursor to the beginning
-        #audio_buffer.seek(0)
+        audio_buffer.seek(0)
 
         # Play the audio from the buffer
         st.audio(audio_buffer.read(), format='audio/wav')
