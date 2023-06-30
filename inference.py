@@ -54,7 +54,7 @@ if submitted:
         sf.write(audio_buffer, audio_array, 16000, format='wav')
 
         # Reset buffer cursor to the beginning
-        audio_buffer.seek(0)
+        #audio_buffer.seek(0)
 
         # Play the audio from the buffer
         st.audio(audio_buffer.read(), format='audio/wav')
